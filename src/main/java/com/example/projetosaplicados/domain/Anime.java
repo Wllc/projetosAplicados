@@ -15,10 +15,16 @@ public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id_anime;
+
     String title;
-    String url = "https://api.myanimelist.net/v2/anime/30230?fields=id,title";
+
+    String url;
+
     Boolean deleted = false;
+
     @OneToMany(mappedBy = "animesFavoritos")
     private List<Usuario> userList;
 
+    //  anime esta linkado com usuário ?
+    // String email_usuario
 }
