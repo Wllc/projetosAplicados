@@ -24,13 +24,12 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_usuario;
-    String username;
-    String login;
-    String password;
-    String email;
-    @ManyToAny
-    List<Anime> animesFavoritos;
+    private Integer id_usuario;
+    private String username;
+    private String login;
+    private String password;
+    private String email;
+
 
 
     @Override

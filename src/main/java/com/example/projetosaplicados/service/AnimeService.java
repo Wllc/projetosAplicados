@@ -2,6 +2,7 @@ package com.example.projetosaplicados.service;
 
 import com.example.projetosaplicados.domain.Anime;
 import com.example.projetosaplicados.repository.AnimeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +17,26 @@ public class AnimeService {
     public AnimeService(AnimeRepository animeRepository){
         this.animeRepository = animeRepository;
     }
-    public void save(Anime anime){
-        animeRepository.save(anime);
+    public Anime create(Anime anime){
+        return animeRepository.save(anime);
     }
-    public void update(Anime anime){
-        animeRepository.save(anime);
+    public Anime update(Anime updateAnime, Long id){
+        Optional<Anime> a = this.animeRepository.findById(id);
+        if(a.isPresent()){
+            Anime anime = a.get();
+            anime.setId_anime(updateAnime.getId_anime());
+            anime.setTitle(updateAnime.getTitle());
+            return animeRepository.save(anime);
+        }else{
+            throw new EntityNotFoundException();
+        }
     }
     public List<Anime> findAll(){
         return animeRepository.findAll();
     }
-    public List<Anime> findByDeletedIsNull(){
-        return animeRepository.findByDeletedIsNull();
-    }
 
-    public Anime findById(String id){
-        Optional<Anime> anime = animeRepository.findById(Long.valueOf(id));
+    public Anime findById(Long id){
+        Optional<Anime> anime = animeRepository.findById(id);
         return anime.orElse(null);
     }
 }
