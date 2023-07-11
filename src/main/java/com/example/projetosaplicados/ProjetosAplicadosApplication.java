@@ -23,11 +23,18 @@ public class ProjetosAplicadosApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(UsuarioRepository usuarioRepository, PasswordEncoder encoder){
+	CommandLineRunner commandLineRunner(AnimeRepository animeRepository, UsuarioRepository usuarioRepository, PasswordEncoder encoder){
 		return args -> {
+//			//Descomente caso vá executar o programa a primeira vez
+//            List<Anime> sapatos = Stream.of(
+//                    new Sapato(1L,null, "sapato1.jpg","Tênis Nike Downshifter 12", "R$ 399,99",42, "Lançamento"),
+//                    new Sapato(2L,null, "sapato2.jpg","Tênis Nike Renew Ride 3", "R$ 246,99",42, "Exclusivo")
+//            ).collect(Collectors.toList());
+//            sapatoRepository.saveAll(sapatos);
+
 			List<Usuario> users = Stream.of(
-					new Usuario(1, "Wallace", "user1",encoder.encode("user1"),"wllc@gmail.com"),
-					new Usuario(2, "Nikolaus","user2",  encoder.encode("user2"),"email@gmail.com")
+					new Usuario(1, "Wallace", "user1",encoder.encode("user1"),"wllc@gmail.com", null),
+					new Usuario(2, "Nikolaus","user2",  encoder.encode("user2"),"email@gmail.com", null)
 			).collect(Collectors.toList());
 			usuarioRepository.saveAll(users);
 		};
