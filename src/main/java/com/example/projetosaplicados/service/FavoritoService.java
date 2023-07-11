@@ -23,7 +23,7 @@ public class FavoritoService {
         Optional<Favorito> f = this.favoritoRepository.findById(id);
         if(f.isPresent()){
             Favorito favorito = f.get();
-            favorito.setAnime_id(updateFavorito.getAnime_id());
+            favorito.setAnimes(updateFavorito.getAnimes());
             favorito.setUsuario_id(updateFavorito.getUsuario_id());
             return favoritoRepository.save(favorito);
         }else{
