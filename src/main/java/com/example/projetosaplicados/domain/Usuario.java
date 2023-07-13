@@ -1,5 +1,6 @@
 package com.example.projetosaplicados.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +26,16 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id_usuario;
+
+    @Column(nullable = false, unique = true)
     String username;
     String login;
+
     String password;
+
+    @Column(nullable = false, unique = true)
     String email;
+
     @ManyToAny
     List<Anime> animesFavoritos;
 

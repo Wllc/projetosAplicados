@@ -14,15 +14,17 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/").permitAll()
-                        .anyRequest().authenticated()
-                );
+                        .requestMatchers("/**").permitAll()
+                        .anyRequest().permitAll()
+                        
+                ).csrf().disable();
+
         return http.build();
     }
 
-    @Bean
-    BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
+    // @Bean
+    // BCryptPasswordEncoder encoder(){
+    //     return new BCryptPasswordEncoder();
+    // }
 
 }

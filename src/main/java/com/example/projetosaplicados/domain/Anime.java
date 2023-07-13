@@ -14,9 +14,14 @@ import java.util.List;
 public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id_anime;
+    int id_anime;
+
+    @Column(nullable = false, unique = true)
+    int mal_id;
+
+    @Column(unique = true)
     String title;
-    String url = "https://api.myanimelist.net/v2/anime/30230?fields=id,title";
+    
     Boolean deleted = false;
     @OneToMany(mappedBy = "animesFavoritos")
     private List<Usuario> userList;

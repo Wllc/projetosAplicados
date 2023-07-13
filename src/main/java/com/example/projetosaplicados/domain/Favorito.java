@@ -15,8 +15,9 @@ public class Favorito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_favorito;
-    private Long usuario_id;
-    @OneToMany(mappedBy = "favorito", cascade = CascadeType.ALL)
+    @Column(unique = true, nullable = false)
+    private int usuario_id;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Anime> animes;
 
 }

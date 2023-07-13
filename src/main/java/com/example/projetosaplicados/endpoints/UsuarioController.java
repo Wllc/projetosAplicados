@@ -16,12 +16,7 @@ public class UsuarioController {
     public UsuarioController(UsuarioService service){
         this.service = service;
     }
-
-    @GetMapping("/home")
-    public String homeEndpoint() {
-        return "Baeldung !";
-    }
-
+    
     @GetMapping
     public List<Usuario> doList(){
         return service.listAll();
